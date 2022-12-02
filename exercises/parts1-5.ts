@@ -1,6 +1,6 @@
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
-
+import { SpaceLocation } from './SpaceLocation';
 
 // Part 1: Declare (5) Variables With Type
 // let spacecraftName: string = 'Determination';
@@ -46,26 +46,29 @@ class Spacecraft {
         this.name = name;
         this.speedMph = speedMph;
     }
-    getDaysToLoction(kilometersAway: number): number{
+    getDaysToLocation(kilometersAway: number): number{
         let milesAway: number = kilometersAway*this.milesPerKilometer;
         let hoursToLocation: number = milesAway/this.speedMph;
         let daysAway: number = hoursToLocation/24;
         return daysAway;
     }
+    printDaysToLocation(location: SpaceLocation) {
+        console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
+     }
 }
 
 
 
 // Create an instance of the class here:
-let spaceShuttle = new Spacecraft ('Determination', 17500);
+let spaceShuttle = new Spacecraft ("Determination", 17500);
 
 
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
 
-console.log(`${spaceShuttle} will take ${spaceShuttle.getDaysToLoction(kilometersToMars)} to get to mars.`);
-console.log(`${spaceShuttle} will take ${spaceShuttle.getDaysToLoction(kilometersToTheMoon)} to get to the moon.`);
+console.log(`${spaceShuttle.name} will take ${spaceShuttle.getDaysToLocation(kilometersToMars)} to get to mars.`);
+console.log(`${spaceShuttle.name} will take ${spaceShuttle.getDaysToLocation(kilometersToTheMoon)} to get to the moon.`);
 
 
 // Part 5: Export and Import the SpaceLocation Class
@@ -75,3 +78,5 @@ console.log(`${spaceShuttle} will take ${spaceShuttle.getDaysToLoction(kilometer
 // Add the printDaysToLocation function to the Spacecraft class.
 
 // Paste in the code from step 6 here:
+spaceShuttle.printDaysToLocation(new SpaceLocation('Mars', kilometersToMars));
+spaceShuttle.printDaysToLocation(new SpaceLocation('the Moon', kilometersToTheMoon));
